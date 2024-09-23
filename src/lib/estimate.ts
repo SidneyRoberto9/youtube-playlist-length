@@ -10,7 +10,8 @@ export async function estimate(id: string) {
   let totalDuration = moment.duration('0');
 
   while (true) {
-    const playlistItems = await getPlaylistItems(id);
+    const playlistItems = await getPlaylistItems(id, nextPage);
+
     const nextPageToken = playlistItems.nextPageToken;
     const urlVideoIdList = playlistItems.items.map((item) => item.contentDetails.videoId);
     const urlVideoIdListJoin = urlVideoIdList.join(',');
@@ -18,7 +19,7 @@ export async function estimate(id: string) {
     total += urlVideoIdList.length;
 
     const playlistItemsDuration = await getPlaylistItemDuration(urlVideoIdListJoin);
-
+    console.log(playlistItemsDuration);
     const videoDurationFromVideoIdList = playlistItemsDuration.items.map(
       (item) => item.contentDetails.duration,
     );

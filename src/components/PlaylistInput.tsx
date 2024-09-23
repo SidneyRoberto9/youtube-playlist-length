@@ -23,7 +23,7 @@ export function PlaylistInput() {
 
     if (urlFormat != '') {
       const estimatedTime = await estimate(urlFormat);
-
+      console.log(estimatedTime);
       setEstimatedTime(estimatedTime);
 
       if (playListUrlRef.current) {
@@ -52,13 +52,15 @@ export function PlaylistInput() {
         <div className="flex items-center justify-around sm:w-36 w-full">
           <button
             onClick={handleEstimate}
-            className="w-36 p-2 px-4 border-2 rounded-xl border-stone-900 dark:border-stone-50">
+            className="w-36 p-2 px-4 border-2 rounded-xl border-stone-900 dark:border-stone-50"
+          >
             Estimate
           </button>
 
           <button
             onClick={handleClean}
-            className="sm:hidden block w-36 p-2 px-4 border-2 rounded-xl border-stone-900 dark:border-stone-50">
+            className="sm:hidden block w-36 p-2 px-4 border-2 rounded-xl border-stone-900 dark:border-stone-50"
+          >
             Clear
           </button>
         </div>

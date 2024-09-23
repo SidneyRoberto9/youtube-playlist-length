@@ -1,7 +1,7 @@
 'use client';
 import axios from 'axios';
 
-import { IPlayListItems, IPlayListDuration } from '@/model/youtube';
+import { IPlayListDuration, IPlayListItems } from '@/model/youtube';
 
 const playlistItemsInstance = axios.create({
   baseURL: 'https://www.googleapis.com/youtube/v3/playlistItems',
@@ -22,10 +22,11 @@ const playlistItemDuration = axios.create({
   },
 });
 
-export async function getPlaylistItems(playlistId: string) {
+export async function getPlaylistItems(playlistId: string, pageToken?: string) {
   const { data } = await playlistItemsInstance.get<IPlayListItems>('', {
     params: {
       playlistId,
+      pageToken,
     },
   });
 
